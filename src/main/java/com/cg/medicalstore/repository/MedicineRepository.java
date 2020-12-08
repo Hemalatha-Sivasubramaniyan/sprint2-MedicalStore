@@ -11,6 +11,8 @@ import com.cg.medicalstore.domain.Medicine;
  */
 @Repository
 public interface MedicineRepository extends CrudRepository<Medicine, Long> {
+
 	Medicine findByMedicineName(String medicineName);
+	
 
 }

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Medicine {
@@ -22,15 +23,15 @@ public class Medicine {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@NotBlank(message = "MedicineName is required")
-	@Column(unique = true, updatable = false)
+	@Column(unique = true)
 	private String medicineName;
-	@NotBlank(message = "Price is required")
+	@NotNull(message = "Price is required")
 	private double price;
 	@NotBlank(message = "ExpiryDate is required")
-	private String expirydate;
+	private String expiryDate;
 	@NotBlank(message = "CompanyName is required")
 	private String companyName;
-	@NotBlank(message = "Stock is required")
+	@NotNull(message = "Stock is required")
 	private int stock;
 
 	/*
@@ -39,6 +40,21 @@ public class Medicine {
 	public Medicine() {
 		super();
 	}
+
+	
+    /*
+     * Parameterized constructor for medicine class
+     */
+	public Medicine( String medicineName,double price,String expiryDate,String companyName,int stock) {
+		super();
+		this.medicineName = medicineName;
+		this.price = price;
+		this.expiryDate = expiryDate;
+		this.companyName = companyName;
+		this.stock = stock;
+	}
+
+
 
 	/*
 	 * Getters and Setters of Medicine class fields
@@ -67,12 +83,12 @@ public class Medicine {
 		this.price = price;
 	}
 
-	public String getExpirydate() {
-		return expirydate;
+	public String getExpiryDate() {
+		return expiryDate;
 	}
 
-	public void setExpirydate(String expirydate) {
-		this.expirydate = expirydate;
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 	public String getCompanyName() {
@@ -97,7 +113,7 @@ public class Medicine {
 	@Override
 	public String toString() {
 		return "Medicine [id=" + id + ", medicineName=" + medicineName + ", price=" + price + ", expirydate="
-				+ expirydate + ", companyName=" + companyName + ", stock=" + stock + "]";
+				+ expiryDate + ", companyName=" + companyName + ", stock=" + stock + "]";
 	}
 
 }
